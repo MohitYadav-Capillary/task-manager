@@ -11,13 +11,30 @@ const TableContainer = () => {
   const unique_owners = owners.filter(
     (owner, index) => owners.indexOf(owner) === index
   );
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="table__container">
       <div className="filters__panel">
         <div className="filters">
-          <Filter title="Status" options={["Pending", "Completed"]} />
-          <Filter title="Priority" options={["Low", "Medium", "High"]} />
-          <Filter title="Associated" options={unique_owners} />
+          <Filter
+            title="Status"
+            options={["Pending", "Completed"]}
+            handleChange={handleChange}
+          />
+          <Filter
+            title="Priority"
+            options={["Low", "Medium", "High"]}
+            handleChange={handleChange}
+          />
+          <Filter
+            title="Associated"
+            options={unique_owners}
+            handleChange={handleChange}
+          />
         </div>
         <div className="button">
           <Link
