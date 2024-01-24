@@ -3,7 +3,6 @@ import "./input.css";
 
 const Input = ({ name, value }) => {
   const [content, setContent] = useState(value);
-  // const [inputVal, setInputVal] = useState(value);
 
   return (
     <div className="input__container">

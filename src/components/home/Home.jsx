@@ -2,7 +2,6 @@ import React from "react";
 import TableContainer from "./tableContainer/TableContainer";
 
 const Home = () => {
-  // console.log('Home rendered');
   return (
     <>
       <div className="header">

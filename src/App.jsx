@@ -1,34 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";
 import CreateTask from "./components/createTask/CreateTask";
 import ViewTask from "./components/viewTask/ViewTask";
-import { taskData } from "./assets/data";
+import store from "./store/store";
 
-export const taskDataContext = createContext();
 const App = () => {
-  // console.log("Rendering App");
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("taskData")) {
-  //     setData(JSON.parse(localStorage.getItem("taskData")));
-  //   } else {
-  //     localStorage.setItem("taskData", JSON.stringify(data));
-  //   }
-  // }, [data]);
-  let [data, setData] = useState(taskData);
-
   return (
     <div className="app">
-      <taskDataContext.Provider value={data}>
+      <Provider store={store}>
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/create" element={<CreateTask setData={setData} />} />
+          <Route path="/create" element={<CreateTask />} />
           <Route path="/task/:taskId" element={<ViewTask />} />
         </Routes>
-      </taskDataContext.Provider>
+      </Provider>
     </div>
   );
 };

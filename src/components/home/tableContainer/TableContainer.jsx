@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./tableContainer.css";
 import Table from "./table/Table";
 import Filter from "./filters/Filter";
 import { Link } from "react-router-dom";
-import { taskDataContext } from "../../../App";
+import { useSelector } from "react-redux";
 
 const TableContainer = () => {
-  const data = useContext(taskDataContext);
+  const data = useSelector((state) => state.tasks);
   const owners = data.map((task) => task.owner);
   const unique_owners = owners.filter(
     (owner, index) => owners.indexOf(owner) === index

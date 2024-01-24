@@ -1,17 +1,10 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import "./table.css";
 import TableRow from "./tableRow/tableRow";
-import { taskDataContext } from "../../../../App";
+import { useSelector } from "react-redux";
 
 const Table = () => {
-  const [data, setData] = useState(useContext(taskDataContext));
-
-  const deleteTask = (key) => {
-    // console.log('deleting task task');
-    const newData = data.filter((task, index) => index !== key);
-    // console.log(newData);
-    setData(newData);
-  };
+  const data = useSelector((state) => state.tasks);
 
   return (
     <div className="table">
@@ -40,7 +33,6 @@ const Table = () => {
                 priority={task.priority}
                 lastUpdated={task.lastUpdated}
                 status={task.status}
-                deleteTask={deleteTask}
               />
             );
           })}

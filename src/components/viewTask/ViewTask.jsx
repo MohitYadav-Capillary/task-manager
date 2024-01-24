@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import "./viewTask.css";
 import Input from "./input/Input";
-import { taskDataContext } from "../../App";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTask } from "../actions";
 
 const ViewTask = () => {
   const navigate = useNavigate();
-  const tasks = useContext(taskDataContext);
   const { taskId } = useParams();
+  const tasks = useSelector((state) => state.tasks);
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -19,8 +21,8 @@ const ViewTask = () => {
       status: e.target[3].value,
       lastUpdated: `${new Date().toLocaleString()}`,
     };
-    // console.log(e.target[3].value);
-    tasks[taskId] = task;
+
+    dispatch(updateTask(taskId, task));
 
     navigate(-1);
   };

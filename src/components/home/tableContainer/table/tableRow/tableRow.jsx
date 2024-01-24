@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./tableRow.css";
+import { useDispatch } from "react-redux";
+import { deleteTask } from "../../../../actions";
 
 const TableBodyRow = (props) => {
+  const dispatch = useDispatch();
   return (
     <tr>
       <td>
@@ -18,7 +21,9 @@ const TableBodyRow = (props) => {
       <td>{props.priority}</td>
       <td>{props.status}</td>
       <td>
-        <button onClick={() => props.deleteTask(props.taskIdx)}>Delete</button>
+        <button onClick={() => dispatch(deleteTask(props.taskIdx))}>
+          Delete
+        </button>
       </td>
     </tr>
   );

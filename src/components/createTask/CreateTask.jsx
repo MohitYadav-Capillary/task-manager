@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./createTask.css";
 import Input from "./input/Input";
-import { taskDataContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addTask } from "../actions";
 
-const CreateTask = ({ setData }) => {
+const CreateTask = () => {
   const navigate = useNavigate();
-  const tasks = useContext(taskDataContext);
-  console.log("tasks-->", tasks);
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -19,12 +19,10 @@ const CreateTask = ({ setData }) => {
       status: "Pending",
       lastUpdated: `${new Date().toLocaleString()}`,
     };
-    // console.log(e.target[3].value);
 
-    // console.log('tasks-->111', tasks);
-    // localStorage.setItem("taskData", JSON.stringify([...tasks, task]));
+    dispatch(addTask(task));
+
     navigate(-1);
-    setData([...tasks, task]);
   };
 
   return (

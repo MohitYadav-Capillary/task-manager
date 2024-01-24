@@ -1,15 +1,17 @@
 import React from "react";
-
 const Filter = ({ title, options, handleChange }) => {
   return (
-    <div className="filter">
+    <div className="filter" style={{ marginRight: "10px" }}>
       <select
         onChange={handleChange}
         style={{
           color: "black",
-          height: "40px",
-          width: "170px",
+          height: "30px",
+          width: "160px",
           padding: "5px",
+          margin: "0px",
+          fontSize: "14px",
+          fontWeight: "bold",
         }}
         name="status"
         id="status"
