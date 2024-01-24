@@ -3,9 +3,18 @@ import "./table.css";
 import TableRow from "./tableRow/tableRow";
 import { useSelector } from "react-redux";
 
-const Table = () => {
-  const data = useSelector((state) => state.tasks);
+const Table = ({ status, priority, associated }) => {
+  let data = useSelector((state) => state.tasks);
 
+  if (status !== "Status") {
+    data = data.filter((task) => task.status === status);
+  }
+  if (priority !== "Priority") {
+    data = data.filter((task) => task.priority === priority);
+  }
+  if (associated !== "Associated") {
+    data = data.filter((task) => task.owner === associated);
+  }
   return (
     <div className="table">
       <table>

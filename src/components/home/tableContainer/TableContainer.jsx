@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./tableContainer.css";
 import Table from "./table/Table";
 import Filter from "./filters/Filter";
@@ -11,9 +11,19 @@ const TableContainer = () => {
   const unique_owners = owners.filter(
     (owner, index) => owners.indexOf(owner) === index
   );
-
+  console.log("Compnent re renders ");
+  const [status, setStatus] = useState("Status");
+  const [priority, setPriority] = useState("Priority");
+  const [associated, setAssociated] = useState("Associated");
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    if (e.target.name === "status") {
+      setStatus(e.target.value);
+    } else if (e.target.name === "priority") {
+      setPriority(e.target.value);
+    } else if (e.target.name === "associated") {
+      setAssociated(e.target.value);
+    }
   };
 
   return (
@@ -21,17 +31,20 @@ const TableContainer = () => {
       <div className="filters__panel">
         <div className="filters">
           <Filter
+            name="status"
             title="Status"
             options={["Pending", "Completed"]}
             handleChange={handleChange}
           />
           <Filter
             title="Priority"
+            name="priority"
             options={["Low", "Medium", "High"]}
             handleChange={handleChange}
           />
           <Filter
             title="Associated"
+            name="associated"
             options={unique_owners}
             handleChange={handleChange}
           />
@@ -49,7 +62,7 @@ const TableContainer = () => {
           </Link>
         </div>
       </div>
-      <Table />
+      <Table status={status} priority={priority} associated={associated} />
     </div>
   );
 };

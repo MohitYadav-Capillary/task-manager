@@ -1,10 +1,11 @@
 import React from "react";
-const Filter = ({ title, options, handleChange }) => {
+const Filter = ({ name, title, options, handleChange }) => {
   return (
-    <div className="filter" style={{ marginRight: "10px" }}>
+    <div style={{ marginRight: "10px" }}>
       <select
         onChange={handleChange}
         style={{
+          backgroundColor: "white",
           color: "black",
           height: "30px",
           width: "160px",
@@ -12,9 +13,10 @@ const Filter = ({ title, options, handleChange }) => {
           margin: "0px",
           fontSize: "14px",
           fontWeight: "bold",
+          borderRadius: "10px",
         }}
-        name="status"
-        id="status"
+        name={name}
+        id={name}
       >
         <option value={title}>{title}</option>
         {options.map((opt, idx) => (
