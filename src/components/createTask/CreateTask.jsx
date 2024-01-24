@@ -4,6 +4,7 @@ import Input from "./input/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addTask } from "../actions";
+import { nanoid } from "nanoid";
 
 const CreateTask = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const CreateTask = () => {
     e.preventDefault();
 
     const task = {
+      id: nanoid(),
       task: e.target[0].value,
       desc: e.target[1].value,
       owner: e.target[2].value,

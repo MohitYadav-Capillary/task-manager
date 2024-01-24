@@ -14,10 +14,10 @@ const deleteTask = (id) => {
   };
 };
 
-const updateTask = (taskId, task) => {
+const updateTask = (updatedTask) => {
   return {
     type: UPDATE_TASK,
-    payload: { id: taskId, task: task },
+    payload: { task: updatedTask },
   };
 };
 

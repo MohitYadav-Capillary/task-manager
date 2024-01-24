@@ -3,14 +3,14 @@ import "./tableRow.css";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../../../actions";
 
-const TableBodyRow = (props) => {
+const TableRow = (props) => {
   const dispatch = useDispatch();
   return (
     <tr>
       <td>
         <Link
           style={{ color: "black", textDecoration: "none" }}
-          to={`/task/${props.taskIdx}`}
+          to={`/task/${props.taskId}`}
         >
           {props.task}
         </Link>
@@ -21,7 +21,7 @@ const TableBodyRow = (props) => {
       <td>{props.priority}</td>
       <td>{props.status}</td>
       <td>
-        <button onClick={() => dispatch(deleteTask(props.taskIdx))}>
+        <button onClick={() => dispatch(deleteTask(props.taskId))}>
           Delete
         </button>
       </td>
@@ -29,4 +29,4 @@ const TableBodyRow = (props) => {
   );
 };
 
-export default TableBodyRow;
+export default TableRow;

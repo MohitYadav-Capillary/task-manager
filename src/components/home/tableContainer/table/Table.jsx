@@ -35,7 +35,7 @@ const Table = ({ status, priority, associated }) => {
             return (
               <TableRow
                 key={index}
-                taskIdx={index}
+                taskId={task.id}
                 task={task.task}
                 desc={task.desc}
                 owner={task.owner}

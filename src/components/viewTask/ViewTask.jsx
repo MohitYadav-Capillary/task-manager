@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./viewTask.css";
 import Input from "./input/Input";
 import { useParams, useNavigate } from "react-router-dom";
@@ -13,7 +13,8 @@ const ViewTask = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const task = {
+    const updatedTask = {
+      id: taskId,
       task: e.target[0].value,
       desc: e.target[1].value,
       owner: e.target[2].value,
@@ -22,11 +23,13 @@ const ViewTask = () => {
       lastUpdated: `${new Date().toLocaleString()}`,
     };
 
-    dispatch(updateTask(taskId, task));
+    dispatch(updateTask(updatedTask));
 
     navigate(-1);
   };
 
+  const currTask = tasks.filter((task) => task.id == taskId)[0];
+  console.log(typeof taskId);
   return (
     <>
       <div className="heading">
@@ -34,23 +37,19 @@ const ViewTask = () => {
       </div>
 
       <form onSubmit={submitHandler} className="create">
-        <Input name="Task" value={tasks[taskId].task} />
-        <Input name="Description" value={tasks[taskId].desc} />
-        <Input name="Owner" value={tasks[taskId].owner} />
+        <Input name="Task" value={currTask?.task} />
+        <Input name="Description" value={currTask?.desc} />
+        <Input name="Owner" value={currTask?.owner} />
 
         <label htmlFor="priority">Status</label>
-        <select name="status" id="status" defaultValue={tasks[taskId].status}>
+        <select name="status" id="status" defaultValue={currTask?.status}>
           <option value="Pending">Pending</option>
           <option value="Completed">Completed</option>
         </select>
         <br />
         <br />
         <label htmlFor="priority">Priority</label>
-        <select
-          name="priority"
-          id="priority"
-          defaultValue={tasks[taskId].priority}
-        >
+        <select name="priority" id="priority" defaultValue={currTask?.priority}>
           <option value="High">High</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>

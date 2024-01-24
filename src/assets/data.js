@@ -1,5 +1,6 @@
 export const taskData = [
   {
+    id: "1",
     task: "Create React App",
     desc: "Create a react project using command shown in tutorial.",
     owner: "Mohit Yadav",
@@ -8,6 +9,7 @@ export const taskData = [
     status: "Completed",
   },
   {
+    id: "2",
     task: "Create Layout",
     desc: "Draw a rough sketch what you are going to make",
     owner: "Mohit Yadav",
@@ -16,6 +18,7 @@ export const taskData = [
     status: "Completed",
   },
   {
+    id: "3",
     task: "Create skeleton",
     desc: "Create skeleton of the application using HTML CSS",
     owner: "Mohit Yadav",
@@ -24,6 +27,7 @@ export const taskData = [
     status: "Completed",
   },
   {
+    id: "4",
     task: "Add interactivity",
     desc: "Now make the static website dynamic using javascript and React",
     owner: "Mohit Yadav",
@@ -32,6 +36,7 @@ export const taskData = [
     status: "Pending",
   },
   {
+    id: "5",
     task: "Implement CRUD",
     desc: "Implement CRUD operations on the data",
     owner: "Mohit Yadav",
@@ -40,6 +45,7 @@ export const taskData = [
     status: "Pending",
   },
   {
+    id: "6",
     task: "Add authentication",
     desc: "Add authentication to the application",
     owner: "Mohit Yadav",
@@ -48,6 +54,7 @@ export const taskData = [
     status: "Pending",
   },
   {
+    id: "7",
     task: "Deploy Application",
     desc: "Deploy the application on a hosting platform",
     owner: "Mohit Yadav",
