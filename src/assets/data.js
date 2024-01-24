@@ -31,4 +31,28 @@ export const taskData = [
     lastUpdated: new Date().toLocaleString(),
     status: "Pending",
   },
+  {
+    task: "Implement CRUD",
+    desc: "Implement CRUD operations on the data",
+    owner: "Mohit Yadav",
+    priority: "High",
+    lastUpdated: new Date().toLocaleString(),
+    status: "Pending",
+  },
+  {
+    task: "Add authentication",
+    desc: "Add authentication to the application",
+    owner: "Mohit Yadav",
+    priority: "Medium",
+    lastUpdated: new Date().toLocaleString(),
+    status: "Pending",
+  },
+  {
+    task: "Deploy Application",
+    desc: "Deploy the application on a hosting platform",
+    owner: "Mohit Yadav",
+    priority: "Low",
+    lastUpdated: new Date().toLocaleString(),
+    status: "Pending",
+  },
 ];
