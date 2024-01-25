@@ -3,7 +3,7 @@ import "./createTask.css";
 import Input from "./input/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addTask } from "../actions";
+import { addTaskRequest } from "../redux/actions";
 import { nanoid } from "nanoid";
 
 const CreateTask = () => {
@@ -22,7 +22,7 @@ const CreateTask = () => {
       lastUpdated: `${new Date().toLocaleString()}`,
     };
 
-    dispatch(addTask(task));
+    dispatch(addTaskRequest(task));
 
     navigate(-1);
   };

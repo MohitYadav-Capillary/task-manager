@@ -1,10 +1,10 @@
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";
 import CreateTask from "./components/createTask/CreateTask";
 import ViewTask from "./components/viewTask/ViewTask";
-import store from "./store/store";
+import store from "./components/redux/store/store";
 
 const App = () => {
   return (

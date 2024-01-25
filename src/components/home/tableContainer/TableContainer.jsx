@@ -11,12 +11,11 @@ const TableContainer = () => {
   const unique_owners = owners.filter(
     (owner, index) => owners.indexOf(owner) === index
   );
-  console.log("Compnent re renders ");
+
   const [status, setStatus] = useState("Status");
   const [priority, setPriority] = useState("Priority");
   const [associated, setAssociated] = useState("Associated");
   const handleChange = (e) => {
-    // console.log(e.target.value);
     if (e.target.name === "status") {
       setStatus(e.target.value);
     } else if (e.target.name === "priority") {

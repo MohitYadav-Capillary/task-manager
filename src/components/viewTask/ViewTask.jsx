@@ -3,7 +3,7 @@ import "./viewTask.css";
 import Input from "./input/Input";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTask } from "../actions";
+import { updateTaskRequest } from "../redux/actions";
 
 const ViewTask = () => {
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ const ViewTask = () => {
       lastUpdated: `${new Date().toLocaleString()}`,
     };
 
-    dispatch(updateTask(updatedTask));
+    dispatch(updateTaskRequest(updatedTask));
 
     navigate(-1);
   };
 
-  const currTask = tasks.filter((task) => task.id == taskId)[0];
-  console.log(typeof taskId);
+  const currTask = tasks.find((task) => task.id == taskId);
+
   return (
     <>
       <div className="heading">

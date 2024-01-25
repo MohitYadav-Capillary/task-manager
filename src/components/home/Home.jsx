@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TableContainer from "./tableContainer/TableContainer";
+import { useDispatch } from "react-redux";
+import { fetchTasksRequest } from "../redux/actions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTasksRequest());
+  }, []);
+
   return (
     <>
       <div className="header">
