@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { UPDATE_TASK_REQUEST } from "../constants";
-import { updateTaskSuccess, updateTaskFailure } from "../actions";
+import { updateTaskSuccess, updateTaskFailure } from "../actionCreators";
 import { updateTaskApi } from "../api";
 
 function* updateTask(task) {

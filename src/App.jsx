@@ -1,4 +1,4 @@
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";

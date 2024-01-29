@@ -42,6 +42,7 @@ const taskReducer = (state = initialState, action) => {
     case DELETE_TASK_SUCCESS:
       return {
         tasks: state.tasks.filter((task) => task.id !== action.payload),
+
         loading: false,
         error: null,
       };

@@ -3,11 +3,10 @@ import "./tableContainer.css";
 import Table from "./table/Table";
 import Filter from "./filters/Filter";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-const TableContainer = () => {
-  const data = useSelector((state) => state.tasks);
-  const owners = data.map((task) => task.owner);
+const TableContainer = ({ tasks }) => {
+  const owners = tasks.map((task) => task.owner);
+
   const unique_owners = owners.filter(
     (owner, index) => owners.indexOf(owner) === index
   );
@@ -61,7 +60,12 @@ const TableContainer = () => {
           </Link>
         </div>
       </div>
-      <Table status={status} priority={priority} associated={associated} />
+      <Table
+        tasks={tasks}
+        status={status}
+        priority={priority}
+        associated={associated}
+      />
     </div>
   );
 };

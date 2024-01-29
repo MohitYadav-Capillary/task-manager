@@ -2,14 +2,12 @@ import React from "react";
 import "./viewTask.css";
 import Input from "./input/Input";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { updateTaskRequest } from "../redux/actions";
+import { connect } from "react-redux";
+import { updateTaskRequest } from "../redux/actionCreators";
 
-const ViewTask = () => {
+const ViewTask = ({ tasks, updateTask }) => {
   const navigate = useNavigate();
   const { taskId } = useParams();
-  const tasks = useSelector((state) => state.tasks);
-  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -23,12 +21,12 @@ const ViewTask = () => {
       lastUpdated: `${new Date().toLocaleString()}`,
     };
 
-    dispatch(updateTaskRequest(updatedTask));
+    updateTask(updatedTask);
 
     navigate(-1);
   };
 
-  const currTask = tasks.find((task) => task.id == taskId);
+  const currTask = tasks.find((task) => task.id === taskId);
 
   return (
     <>
@@ -60,4 +58,16 @@ const ViewTask = () => {
   );
 };
 
-export default ViewTask;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateTask: (updatedTask) => dispatch(updateTaskRequest(updatedTask)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewTask);

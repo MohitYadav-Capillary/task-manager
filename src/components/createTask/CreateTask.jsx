@@ -2,13 +2,12 @@ import React from "react";
 import "./createTask.css";
 import Input from "./input/Input";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addTaskRequest } from "../redux/actions";
+import { connect } from "react-redux";
+import { addTaskRequest } from "../redux/actionCreators";
 import { nanoid } from "nanoid";
 
 const CreateTask = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -22,7 +21,7 @@ const CreateTask = () => {
       lastUpdated: `${new Date().toLocaleString()}`,
     };
 
-    dispatch(addTaskRequest(task));
+    addTask(task);
 
     navigate(-1);
   };
@@ -43,4 +42,10 @@ const CreateTask = () => {
   );
 };
 
-export default CreateTask;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTask: (task) => dispatch(addTaskRequest(task)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateTask);

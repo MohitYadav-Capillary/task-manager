@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 import { FETCH_TASKS_REQUEST } from "../constants";
-import { fetchTasksFailure, fetchTasksSuccess } from "../actions";
+import { fetchTasksFailure, fetchTasksSuccess } from "../actionCreators";
 
 import { getTasksApi } from "../api";
 

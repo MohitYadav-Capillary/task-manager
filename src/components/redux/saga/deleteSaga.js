@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 
 import { DELETE_TASK_REQUEST } from "../constants";
-import { deleteTaskFailure, deleteTaskSuccess } from "../actions";
+import { deleteTaskFailure, deleteTaskSuccess } from "../actionCreators";
 import { deleteTaskApi } from "../api";
 
 export function* deleteTask(id) {

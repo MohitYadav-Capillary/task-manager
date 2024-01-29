@@ -1,32 +1,43 @@
 import { Link } from "react-router-dom";
 import "./tableRow.css";
-import { useDispatch } from "react-redux";
-import { deleteTaskRequest } from "../../../../redux/actions";
-
-const TableRow = (props) => {
-  const dispatch = useDispatch();
+import { deleteTaskRequest } from "../../../../redux/actionCreators";
+import { connect } from "react-redux";
+const TableRow = ({
+  taskId,
+  task,
+  desc,
+  owner,
+  lastUpdated,
+  priority,
+  status,
+  deleteTask,
+}) => {
   return (
     <tr>
       <td>
         <Link
           style={{ color: "black", textDecoration: "none" }}
-          to={`/task/${props.taskId}`}
+          to={`/task/${taskId}`}
         >
-          {props.task}
+          {task}
         </Link>
       </td>
-      <td>{props.desc}</td>
-      <td>{props.owner}</td>
-      <td>{props.lastUpdated}</td>
-      <td>{props.priority}</td>
-      <td>{props.status}</td>
+      <td>{desc}</td>
+      <td>{owner}</td>
+      <td>{lastUpdated}</td>
+      <td>{priority}</td>
+      <td>{status}</td>
       <td>
-        <button onClick={() => dispatch(deleteTaskRequest(props.taskId))}>
-          Delete
-        </button>
+        <button onClick={() => deleteTask(taskId)}>Delete</button>
       </td>
     </tr>
   );
 };
 
-export default TableRow;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteTask: (id) => dispatch(deleteTaskRequest(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TableRow);

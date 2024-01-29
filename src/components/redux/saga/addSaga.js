@@ -2,7 +2,7 @@ import { put, call, takeEvery } from "redux-saga/effects";
 
 import { ADD_TASK_REQUEST } from "../constants";
 
-import { addTaskSuccess, addTaskFailure } from "../actions";
+import { addTaskSuccess, addTaskFailure } from "../actionCreators";
 
 import { addTaskApi } from "../api";
 

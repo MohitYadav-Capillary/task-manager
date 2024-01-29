@@ -1,19 +1,17 @@
 import React from "react";
 import "./table.css";
 import TableRow from "./tableRow/tableRow";
-import { useSelector } from "react-redux";
 
-const Table = ({ status, priority, associated }) => {
-  let data = useSelector((state) => state.tasks);
-
+const Table = ({ tasks, status, priority, associated }) => {
+  let filteredTasks = tasks;
   if (status !== "Status") {
-    data = data.filter((task) => task.status === status);
+    filteredTasks = tasks.filter((task) => task.status === status);
   }
   if (priority !== "Priority") {
-    data = data.filter((task) => task.priority === priority);
+    filteredTasks = filteredTasks.filter((task) => task.priority === priority);
   }
   if (associated !== "Associated") {
-    data = data.filter((task) => task.owner === associated);
+    filteredTasks = filteredTasks.filter((task) => task.owner === associated);
   }
   return (
     <div className="table">
@@ -31,7 +29,7 @@ const Table = ({ status, priority, associated }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((task, index) => {
+          {filteredTasks.map((task, index) => {
             return (
               <TableRow
                 key={index}

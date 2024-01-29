@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import "./home.css";
 import TableContainer from "./tableContainer/TableContainer";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTasksRequest } from "../redux/actions";
+import { connect } from "react-redux";
+import { fetchTasksRequest } from "../redux/actionCreators";
 import ReactLoading from "react-loading";
 
-const Home = () => {
-  const dispatch = useDispatch();
+const Home = ({ tasks, loading, fetchTasks }) => {
   useEffect(() => {
-    dispatch(fetchTasksRequest());
+    fetchTasks();
   }, []);
-
-  const loading = useSelector((state) => state.loading);
 
   return (
     <>
@@ -29,10 +26,23 @@ const Home = () => {
           color={"#89db8f"}
         />
       ) : (
-        <TableContainer />
+        <TableContainer tasks={tasks} />
       )}
     </>
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+    loading: state.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTasks: () => dispatch(fetchTasksRequest()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
