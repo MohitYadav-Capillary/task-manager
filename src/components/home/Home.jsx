@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
+import "./home.css";
 import TableContainer from "./tableContainer/TableContainer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchTasksRequest } from "../redux/actions";
+import ReactLoading from "react-loading";
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchTasksRequest());
   }, []);
+
+  const loading = useSelector((state) => state.loading);
 
   return (
     <>
@@ -18,7 +22,15 @@ const Home = () => {
           achievements
         </p>
       </div>
-      <TableContainer />
+      {loading ? (
+        <ReactLoading
+          className="loader"
+          type={"spinningBubbles"}
+          color={"#89db8f"}
+        />
+      ) : (
+        <TableContainer />
+      )}
     </>
   );
 };
