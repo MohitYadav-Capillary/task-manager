@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { addTaskRequest } from "../redux/actionCreators";
 import { nanoid } from "nanoid";
 
-const CreateTask = () => {
+const CreateTask = ({ addTask }) => {
   const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();

@@ -4,6 +4,7 @@ import TableContainer from "./tableContainer/TableContainer";
 import { connect } from "react-redux";
 import { fetchTasksRequest } from "../redux/actionCreators";
 import ReactLoading from "react-loading";
+import { getLoading, getTasks } from "../redux/selectors";
 
 const Home = ({ tasks, loading, fetchTasks }) => {
   useEffect(() => {
@@ -34,8 +35,8 @@ const Home = ({ tasks, loading, fetchTasks }) => {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks,
-    loading: state.loading,
+    tasks: getTasks(state),
+    loading: getLoading(state),
   };
 };
 

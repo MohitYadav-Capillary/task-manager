@@ -4,6 +4,7 @@ import Input from "./input/Input";
 import { useParams, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateTaskRequest } from "../redux/actionCreators";
+import { getTasks } from "../redux/selectors";
 
 const ViewTask = ({ tasks, updateTask }) => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const ViewTask = ({ tasks, updateTask }) => {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks,
+    tasks: getTasks(state),
   };
 };
 

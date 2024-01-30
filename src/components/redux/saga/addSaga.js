@@ -9,7 +9,6 @@ import { addTaskApi } from "../api";
 export function* addTask(task) {
   try {
     const response = yield call(addTaskApi, task);
-
     yield put(addTaskSuccess(response));
   } catch (error) {
     yield put(addTaskFailure(error));

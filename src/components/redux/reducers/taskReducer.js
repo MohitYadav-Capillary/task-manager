@@ -1,3 +1,4 @@
+import { fromJS } from "immutable";
 import {
   FETCH_TASKS_REQUEST,
   FETCH_TASKS_FAILURE,
@@ -13,11 +14,11 @@ import {
   UPDATE_TASK_FAILURE,
 } from "../constants";
 
-const initialState = {
+const initialState = fromJS({
   tasks: [],
   loading: false,
   error: null,
-};
+});
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,7 +38,7 @@ const taskReducer = (state = initialState, action) => {
       };
 
     case DELETE_TASK_REQUEST:
-      return { ...state, loading: true, error: null };
+      return state.set("loading", true).set("error", null);
 
     case DELETE_TASK_SUCCESS:
       return {
