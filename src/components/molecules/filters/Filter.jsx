@@ -1,5 +1,5 @@
 import React from "react";
-const Filter = ({ name, title, options, handleChange }) => {
+const Filter = ({ name, options, handleChange }) => {
   return (
     <div style={{ marginRight: "10px" }}>
       <select
@@ -18,7 +18,6 @@ const Filter = ({ name, title, options, handleChange }) => {
         name={name}
         id={name}
       >
-        <option value={title}>{title}</option>
         {options.map((opt, idx) => (
           <option key={idx} value={opt}>
             {opt}

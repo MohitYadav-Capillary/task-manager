@@ -1,9 +1,9 @@
 import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./components/home/Home";
-import CreateTask from "./components/createTask/CreateTask";
-import ViewTask from "./components/viewTask/ViewTask";
+import Home from "./components/pages/home/Home";
+import CreateTask from "./components/pages/createTask/CreateTask";
+import ViewTask from "./components/pages/viewTask/ViewTask";
 import store from "./components/redux/store/store";
 
 const App = () => {

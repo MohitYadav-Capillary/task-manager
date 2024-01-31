@@ -1,18 +1,10 @@
 import React from "react";
 import "./table.css";
-import TableRow from "./tableRow/tableRow";
+import TableRow from "../../molecules/tableRow/tableRow";
+import { getTasksByFilters } from "../../redux/selectors";
+import { connect } from "react-redux";
 
-const Table = ({ tasks, status, priority, associated }) => {
-  let filteredTasks = tasks;
-  if (status !== "Status") {
-    filteredTasks = tasks.filter((task) => task.status === status);
-  }
-  if (priority !== "Priority") {
-    filteredTasks = filteredTasks.filter((task) => task.priority === priority);
-  }
-  if (associated !== "Associated") {
-    filteredTasks = filteredTasks.filter((task) => task.owner === associated);
-  }
+const Table = ({ tasks, filters }) => {
   return (
     <div className="table">
       <table>
@@ -29,7 +21,7 @@ const Table = ({ tasks, status, priority, associated }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredTasks.map((task, index) => {
+          {tasks.map((task, index) => {
             return (
               <TableRow
                 key={index}
@@ -49,4 +41,14 @@ const Table = ({ tasks, status, priority, associated }) => {
   );
 };
 
-export default Table;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    tasks: getTasksByFilters(state, ownProps.filters),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

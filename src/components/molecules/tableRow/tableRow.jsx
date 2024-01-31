@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./tableRow.css";
-import { deleteTaskRequest } from "../../../../redux/actionCreators";
+import { deleteTaskRequest } from "../../redux/actionCreators";
 import { connect } from "react-redux";
 const TableRow = ({
   taskId,

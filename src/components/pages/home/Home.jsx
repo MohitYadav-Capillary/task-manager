@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./home.css";
-import TableContainer from "./tableContainer/TableContainer";
+import TableContainer from "../../oraganism/tableContainer/TableContainer";
 import { connect } from "react-redux";
-import { fetchTasksRequest } from "../redux/actionCreators";
+import { fetchTasksRequest } from "../../redux/actionCreators";
 import ReactLoading from "react-loading";
-import { getLoading, getTasks } from "../redux/selectors";
+import { getLoading, getTasks } from "../../redux/selectors";
 
 const Home = ({ tasks, loading, fetchTasks }) => {
   useEffect(() => {

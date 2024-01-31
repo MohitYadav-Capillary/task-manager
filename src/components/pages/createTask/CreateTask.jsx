@@ -1,9 +1,9 @@
 import React from "react";
 import "./createTask.css";
-import Input from "./input/Input";
+import Input from "../../molecules/input/Input";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { addTaskRequest } from "../redux/actionCreators";
+import { addTaskRequest } from "../../redux/actionCreators";
 import { nanoid } from "nanoid";
 
 const CreateTask = ({ addTask }) => {
@@ -26,11 +26,13 @@ const CreateTask = ({ addTask }) => {
     navigate(-1);
   };
 
+  const inputs = ["Task", "Description", "Owner"];
+
   return (
     <form onSubmit={submitHandler} className="create">
-      <Input name="Task" />
-      <Input name="Description" />
-      <Input name="Owner" />
+      {inputs.map((input, index) => (
+        <Input key={index} name={input} value={null} />
+      ))}
       <label htmlFor="priority">Priority</label>
       <select name="priority" id="priority" defaultValue="High">
         <option value="High">High</option>

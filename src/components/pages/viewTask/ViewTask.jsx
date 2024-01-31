@@ -1,10 +1,10 @@
 import React from "react";
 import "./viewTask.css";
-import Input from "./input/Input";
+import Input from "../../molecules/input/Input";
 import { useParams, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { updateTaskRequest } from "../redux/actionCreators";
-import { getTasks } from "../redux/selectors";
+import { updateTaskRequest } from "../../redux/actionCreators";
+import { getTasks } from "../../redux/selectors";
 
 const ViewTask = ({ tasks, updateTask }) => {
   const navigate = useNavigate();
@@ -29,6 +29,12 @@ const ViewTask = ({ tasks, updateTask }) => {
 
   const currTask = tasks.find((task) => task.id === taskId);
 
+  const taskFields = [
+    { name: "Task", value: currTask?.task },
+    { name: "Description", value: currTask?.desc },
+    { name: "Owner", value: currTask?.owner },
+  ];
+
   return (
     <>
       <div className="heading">
@@ -36,9 +42,9 @@ const ViewTask = ({ tasks, updateTask }) => {
       </div>
 
       <form onSubmit={submitHandler} className="create">
-        <Input name="Task" value={currTask?.task} />
-        <Input name="Description" value={currTask?.desc} />
-        <Input name="Owner" value={currTask?.owner} />
+        {taskFields.map((input, index) => (
+          <Input key={index} name={input.name} value={input.value} />
+        ))}
 
         <label htmlFor="priority">Status</label>
         <select name="status" id="status" defaultValue={currTask?.status}>

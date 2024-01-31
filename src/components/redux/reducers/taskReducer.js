@@ -15,7 +15,7 @@ import {
 } from "../constants";
 
 const initialState = fromJS({
-  tasks: [],
+  tasks: fromJS([]),
   loading: false,
   error: null,
 });
@@ -23,74 +23,65 @@ const initialState = fromJS({
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TASKS_REQUEST:
-      return { ...state, loading: true, error: null };
+      return fromJS(state.set("loading", true).set("error", null));
     case FETCH_TASKS_SUCCESS:
-      return {
-        tasks: action.payload,
-        loading: false,
-        error: null,
-      };
+      return fromJS(state.set("tasks", action.payload).set("loading", false));
     case FETCH_TASKS_FAILURE:
-      return {
-        tasks: [],
-        loading: false,
-        error: action.payload,
-      };
+      return fromJS(
+        state
+          .set("error", action.payload)
+          .set("loading", false)
+          .set("tasks", fromJS([]))
+      );
 
     case DELETE_TASK_REQUEST:
-      return state.set("loading", true).set("error", null);
+      return fromJS(state.set("loading", true).set("error", null));
 
     case DELETE_TASK_SUCCESS:
-      return {
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
-
-        loading: false,
-        error: null,
-      };
-
+      return fromJS(
+        state
+          .set(
+            "tasks",
+            state.get("tasks").filter((task) => task.id !== action.payload)
+          )
+          .set("loading", false)
+          .set("error", null)
+      );
     case DELETE_TASK_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+      return fromJS(state.set("loading", false).set("error", action.payload));
 
     case ADD_TASK_REQUEST:
-      return { ...state, loading: true, error: null };
-    case ADD_TASK_SUCCESS:
-      return {
-        tasks: [...state.tasks, action.payload],
-        loading: false,
-        error: null,
-      };
+      return fromJS(state.set("loading", true).set("error", null));
+    case ADD_TASK_SUCCESS: {
+      const data = state.get("tasks");
+      data.push(action.payload);
+
+      return fromJS(
+        state.set("loading", false).set("error", null).set("tasks", data)
+      );
+    }
     case ADD_TASK_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+      return fromJS(state.set("loading", false).set("error", action.payload));
 
     case UPDATE_TASK_REQUEST:
-      return { ...state, loading: true, error: null };
+      return fromJS(state.set("loading", true).set("error", null));
 
     case UPDATE_TASK_SUCCESS:
-      return {
-        tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
-        ),
-        loading: false,
-        error: null,
-      };
+      return fromJS(
+        state
+          .set("loading", false)
+          .set("error", null)
+          .set(
+            "tasks",
+            state.get("tasks").set(action.payload.id, action.payload)
+          )
+      );
 
     case UPDATE_TASK_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+      return fromJS(state.set("loading", false).set("error", action.payload));
 
     default:
-      return state;
+      return fromJS(state);
   }
 };
 

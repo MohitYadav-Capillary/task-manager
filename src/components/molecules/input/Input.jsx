@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./input.css";
 
 const Input = ({ name, value }) => {
-  const [content, setContent] = useState(value);
+  const [content, setContent] = useState(() => value || "");
 
   return (
     <div className="input__container">

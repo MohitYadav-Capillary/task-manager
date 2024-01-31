@@ -7,7 +7,7 @@ const addTaskApi = async (task) => {
       },
       body: JSON.stringify(task),
     });
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       throw new Error("Error adding task");
     }
 
@@ -26,7 +26,7 @@ const deleteTaskApi = async (url) => {
     if (response.status !== 200) {
       throw new Error("Error deleting task");
     }
-    const data = await response.json();
+    const data = await response.text();
     return data;
   } catch (error) {
     console.log(error);
